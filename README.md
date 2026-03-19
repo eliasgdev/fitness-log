@@ -63,8 +63,7 @@ Valores basados en promedios generales. El resultado real varia segun peso corpo
 
 1. Clona el repo:
    ```bash
-   git clone https://github.com/Eliasdev/fitness-log.git
-   cd fitness-log
+   git clone https://github.com/eliasgdev/fitness-log.git
    ```
 2. Abre `index.html` en tu navegador o usa Live Server en VS Code
 
@@ -72,4 +71,4 @@ No necesita dependencias ni instalacion adicional.
 
 ## Autor
 
-Elias — [@Eliasdev](https://github.com/Eliasdev)
+**Elias Gutierrez** — [github.com/eliasgdev](https://github.com/eliasgdev)
