@@ -1,0 +1,442 @@
+
+/* --- Variables globales --- */
+:root {
+  --bg:        #f5f0e8;
+  --surface:   #ffffff;
+  --surface2:  #ede8df;
+  --accent:    #1a1a1a;
+  --green:     #2a9d3f;
+  --red:       #e63946;
+  --orange:    #f4791f;
+  --text:      #1a1a1a;
+  --text-muted:#888888;
+  --border:    #d8d2c7;
+  --radius:    14px;
+  --shadow:    4px 4px 0px #1a1a1a;
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body:    'Archivo', sans-serif;
+}
+
+/* --- Reset base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+/* --- Textura de ruido sobre el fondo --- */
+.noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--accent);
+  background: var(--bg);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+/* Acento de color en la segunda parte del logo */
+.logo span { color: var(--orange); }
+
+.header-date {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ============================================================
+   LAYOUT PRINCIPAL
+   ============================================================ */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* ============================================================
+   TABS DE NAVEGACION
+   ============================================================ */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab {
+  background: none;
+  border: 2px solid transparent;
+  border-bottom: none;
+  padding: 10px 20px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 8px 8px 0 0;
+  transition: color 0.2s;
+  margin-bottom: -2px;
+}
+
+.tab:hover { color: var(--text); }
+
+/* Tab activo: borde superior y laterales, fondo que "tapa" la linea inferior */
+.tab.active {
+  background: var(--bg);
+  border-color: var(--accent);
+  border-bottom-color: var(--bg);
+  color: var(--accent);
+}
+
+/* ============================================================
+   CONTENIDO DE TABS
+   ============================================================ */
+.tab-content {
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.hidden { display: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   TITULOS DE SECCION
+   ============================================================ */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.section-title span { color: var(--orange); }
+
+/* ============================================================
+   FORMULARIO DE REGISTRO
+   ============================================================ */
+.form-card {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus { border-color: var(--accent); }
+
+/* Fila de campos numericos lado a lado */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.form-row.hidden { display: none; }
+
+/* --- Botones de tipo de entrenamiento --- */
+.tipo-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tipo-btn {
+  padding: 8px 18px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+}
+
+.tipo-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.tipo-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* --- Boton principal guardar --- */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: white;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #1a1a1a;
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #1a1a1a;
+}
+
+/* Mensaje de confirmacion al guardar */
+.feedback-msg {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--green);
+  min-height: 20px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   RESUMEN DEL DIA
+   ============================================================ */
+.dia-resumen {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+/* Fila individual de ejercicio registrado */
+.ejercicio-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+
+.ejercicio-item:last-child { border-bottom: none; }
+
+.ejercicio-info { flex: 1; }
+
+.ejercicio-nombre {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.ejercicio-detalle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Badge del tipo de entrenamiento */
+.ejercicio-tipo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Boton eliminar ejercicio */
+.btn-eliminar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--red);
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.btn-eliminar:hover { opacity: 1; }
+
+/* Mensaje cuando no hay ejercicios */
+.empty-msg {
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ============================================================
+   HISTORIAL
+   ============================================================ */
+.historial-dia {
+  margin-bottom: 24px;
+}
+
+/* Encabezado de cada dia en el historial */
+.historial-fecha {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 12px;
+}
+
+.historial-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: 2px 2px 0 var(--border);
+}
+
+/* ============================================================
+   CALORIAS
+   ============================================================ */
+
+/* Tarjeta grande con el total */
+.cal-total-card {
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.cal-numero {
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: 1;
+}
+
+.cal-label {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Grid de desglose por tipo */
+.macros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.macro-card {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.macro-val {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--orange);
+}
+
+.macro-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Nota informativa sobre la estimacion */
+.cal-info {
+  background: var(--surface2);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   RESPONSIVE - Movil
+   ============================================================ */
+@media (max-width: 480px) {
+  .form-row       { grid-template-columns: 1fr 1fr; }
+  .macros-grid    { grid-template-columns: 1fr; }
+  .cal-numero     { font-size: 56px; }
+  .tipo-btns      { flex-direction: column; }
+}
