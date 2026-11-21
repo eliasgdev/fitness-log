@@ -1,5 +1,5 @@
 // Service worker: la app abre sin conexión. Subir VERSION cada vez que cambien los archivos.
-const VERSION = 'fl-v2.0.0';
+const VERSION = 'fl-v2.0.1';
 const ARCHIVOS = [
   './', 'index.html', 'css/styles.css', 'manifest.webmanifest',
   'js/app.js', 'js/calculos.js', 'js/catalogo.js', 'js/almacen.js', 'js/iconos.js',
