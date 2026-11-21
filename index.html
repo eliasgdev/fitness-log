@@ -1,147 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FitnessLog</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>FitnessLog · Bitácora de entrenamiento</title>
+  <meta name="description" content="Anota tus series, mira tus récords y tu progreso, y estima las calorías con tu peso. Sin registro y sin conexión: los datos se quedan en tu dispositivo." />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta property="og:title" content="FitnessLog" />
+  <meta property="og:description" content="Bitácora de entrenamiento: series, récords, 1RM estimado y progreso. Sin registro." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="icons/icono.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icono-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script type="module" src="js/app.js"></script>
 </head>
 <body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-  <div class="noise"></div>
-
-  <header>
-    <div class="logo">FITNESS<span>LOG</span></div>
-    <div class="header-date" id="headerDate"></div>
+  <header class="barra">
+    <a class="marca" href="./" aria-label="FitnessLog, inicio">
+      <img src="icons/icono.svg" alt="" width="32" height="32" />
+      <span>FitnessLog</span>
+    </a>
+    <a class="enlace tenue" href="#ajustes">Respaldo</a>
   </header>
 
-  <main>
-
-    <!-- NAVEGACION POR TABS -->
-    <div class="tabs">
-      <button class="tab active" data-tab="registrar">Registrar</button>
-      <button class="tab" data-tab="historial">Historial</button>
-      <button class="tab" data-tab="calorias">Calorias</button>
-    </div>
-
-    <!-- TAB: REGISTRAR -->
-    <section class="tab-content active" id="tab-registrar">
-
-      <div class="form-card">
-        <h2 class="section-title">Nuevo ejercicio</h2>
-
-        <!-- Selector de tipo -->
-        <div class="form-group">
-          <label>Tipo de entrenamiento</label>
-          <div class="tipo-btns">
-            <button class="tipo-btn active" data-tipo="pesas">Pesas</button>
-            <button class="tipo-btn" data-tipo="cardio">Cardio</button>
-            <button class="tipo-btn" data-tipo="calistenia">Calistenia</button>
-          </div>
-        </div>
-
-        <!-- Nombre del ejercicio -->
-        <div class="form-group">
-          <label for="ejercicioNombre">Nombre del ejercicio</label>
-          <input type="text" id="ejercicioNombre" placeholder="Ej: Sentadilla, Press banca, Correr..."/>
-        </div>
-
-        <!-- Campos para pesas -->
-        <div class="form-row" id="rowPesas">
-          <div class="form-group">
-            <label for="series">Series</label>
-            <input type="number" id="series" placeholder="3" min="1"/>
-          </div>
-          <div class="form-group">
-            <label for="reps">Repeticiones</label>
-            <input type="number" id="reps" placeholder="12" min="1"/>
-          </div>
-          <div class="form-group">
-            <label for="peso">Peso (kg)</label>
-            <input type="number" id="peso" placeholder="60" min="0"/>
-          </div>
-        </div>
-
-        <!-- Campos para cardio -->
-        <div class="form-row hidden" id="rowCardio">
-          <div class="form-group">
-            <label for="duracion">Duracion (min)</label>
-            <input type="number" id="duracion" placeholder="30" min="1"/>
-          </div>
-          <div class="form-group">
-            <label for="distancia">Distancia (km)</label>
-            <input type="number" id="distancia" placeholder="5" min="0" step="0.1"/>
-          </div>
-        </div>
-
-        <!-- Campos para calistenia -->
-        <div class="form-row hidden" id="rowCalistenia">
-          <div class="form-group">
-            <label for="seriesC">Series</label>
-            <input type="number" id="seriesC" placeholder="4" min="1"/>
-          </div>
-          <div class="form-group">
-            <label for="repsC">Repeticiones</label>
-            <input type="number" id="repsC" placeholder="15" min="1"/>
-          </div>
-        </div>
-
-        <!-- Notas opcionales -->
-        <div class="form-group">
-          <label for="notas">Notas (opcional)</label>
-          <input type="text" id="notas" placeholder="Ej: Aumente peso, me costo el ultimo set..."/>
-        </div>
-
-        <button class="btn-primary" id="btnGuardar">GUARDAR EJERCICIO</button>
-        <p class="feedback-msg" id="feedbackMsg"></p>
-      </div>
-
-      <!-- Resumen del dia actual -->
-      <div class="dia-resumen">
-        <h3 class="section-title">Hoy — <span id="resumenCount">0</span> ejercicios</h3>
-        <div id="ejerciciosHoy"></div>
-      </div>
-
+  <main id="contenido">
+    <section class="portada" aria-labelledby="titulo">
+      <p class="tenue" id="fechaHoy"></p>
+      <h1 id="titulo">Tu semana</h1>
+      <dl class="datos" id="datosSemana"></dl>
     </section>
 
-    <!-- TAB: HISTORIAL -->
-    <section class="tab-content hidden" id="tab-historial">
-      <h2 class="section-title">Historial de entrenamientos</h2>
-      <div id="historialLista"></div>
+    <section class="seccion" aria-labelledby="tituloRegistrar">
+      <h2 id="tituloRegistrar">Registrar</h2>
+      <form class="registro" id="formRegistro" novalidate autocomplete="off">
+        <div class="fila-campos">
+          <p class="campo campo-ancho">
+            <label for="ejercicio">Ejercicio</label>
+            <input id="ejercicio" list="catalogo" maxlength="60" placeholder="Sentadilla, Correr, Dominadas…" required />
+            <datalist id="catalogo"></datalist>
+          </p>
+          <p class="campo">
+            <label for="fecha">Fecha</label>
+            <input id="fecha" type="date" required />
+          </p>
+        </div>
+        <p class="pista" id="ultimaVez" aria-live="polite"></p>
+
+        <fieldset class="tipos">
+          <legend class="visual-oculto">Tipo de ejercicio</legend>
+          <label><input type="radio" name="tipo" value="fuerza" checked /><span>Con peso</span></label>
+          <label><input type="radio" name="tipo" value="peso-corporal" /><span>Peso corporal</span></label>
+          <label><input type="radio" name="tipo" value="cardio" /><span>Cardio</span></label>
+        </fieldset>
+
+        <div id="bloqueSeries">
+          <ol class="series" id="series"></ol>
+          <button type="button" class="enlace" id="agregarSerie">Agregar serie</button>
+        </div>
+
+        <p class="frase" id="bloqueCardio" hidden>
+          <input id="minutos" type="number" inputmode="numeric" min="1" max="600" step="1" aria-label="Minutos" />
+          <span>minutos</span>
+          <input id="km" type="number" inputmode="decimal" min="0" max="300" step="0.01" aria-label="Kilómetros (opcional)" placeholder="—" />
+          <span>km <span class="tenue">(opcional)</span></span>
+        </p>
+
+        <p class="campo">
+          <label for="notas">Notas <span class="tenue">(opcional)</span></label>
+          <input id="notas" maxlength="200" placeholder="Cómo te sentiste, técnica, molestias…" />
+        </p>
+
+        <div class="acciones">
+          <button type="submit" class="boton-principal">Guardar</button>
+          <p class="mensaje" id="mensajeRegistro" role="status"></p>
+        </div>
+      </form>
     </section>
 
-    <!-- TAB: CALORIAS -->
-    <section class="tab-content hidden" id="tab-calorias">
-      <h2 class="section-title">Calorias de hoy</h2>
-
-      <div class="cal-total-card">
-        <div class="cal-numero" id="calTotal">0</div>
-        <div class="cal-label">kcal quemadas estimadas</div>
-      </div>
-
-      <div class="macros-grid">
-        <div class="macro-card">
-          <span class="macro-val" id="macroCardio">0</span>
-          <span class="macro-label">Cardio (kcal)</span>
-        </div>
-        <div class="macro-card">
-          <span class="macro-val" id="macroPesas">0</span>
-          <span class="macro-label">Pesas (kcal)</span>
-        </div>
-        <div class="macro-card">
-          <span class="macro-val" id="macroCalistenia">0</span>
-          <span class="macro-label">Calistenia (kcal)</span>
-        </div>
-      </div>
-
-      <div class="cal-info">
-        <p>Estimacion basada en promedios generales. Los valores reales varian segun tu peso y nivel de intensidad.</p>
-      </div>
+    <section class="seccion" aria-labelledby="tituloDia">
+      <h2 id="tituloDia">Hoy</h2>
+      <ul class="lista" id="listaDia"></ul>
+      <p class="vacio" id="vacioDia">Todavía no has anotado nada este día.</p>
     </section>
 
+    <section class="seccion" aria-labelledby="tituloSemanas">
+      <div class="seccion-cabeza">
+        <h2 id="tituloSemanas">Últimas 12 semanas</h2>
+        <p class="tenue" id="racha"></p>
+      </div>
+      <ol class="semanas" id="semanas" aria-label="Días entrenados por semana"></ol>
+    </section>
+
+    <section class="seccion" aria-labelledby="tituloProgreso" id="seccionProgreso" hidden>
+      <div class="seccion-cabeza">
+        <h2 id="tituloProgreso">Progreso</h2>
+        <label class="visual-oculto" for="progresoEjercicio">Ejercicio</label>
+        <select id="progresoEjercicio"></select>
+      </div>
+      <p class="progreso-cifra" id="progresoCifra"></p>
+      <div class="grafica" id="grafica"></div>
+    </section>
+
+    <section class="seccion" aria-labelledby="tituloHistorial" id="seccionHistorial" hidden>
+      <h2 id="tituloHistorial">Historial</h2>
+      <div id="historial"></div>
+      <button type="button" class="enlace" id="verMas" hidden>Ver días anteriores</button>
+    </section>
+
+    <section class="seccion" aria-labelledby="tituloAjustes" id="ajustes">
+      <h2 id="tituloAjustes">Ajustes y respaldo</h2>
+      <form class="frase" id="formPeso" novalidate>
+        <label for="pesoCorporal">Peso</label>
+        <input id="pesoCorporal" type="number" inputmode="decimal" min="25" max="300" step="0.1" placeholder="—" />
+        <span>kg</span>
+        <span class="tenue nota-peso">Se usa solo para estimar las calorías.</span>
+      </form>
+      <p class="texto-ajustes">Tus datos se guardan únicamente en este navegador. Descarga un respaldo de vez en cuando o úsalo para pasarlos a otro dispositivo.</p>
+      <div class="botones">
+        <button type="button" class="boton" id="exportar">Descargar respaldo</button>
+        <label class="boton" for="importar">Cargar respaldo</label>
+        <input type="file" id="importar" accept="application/json,.json" class="visual-oculto" />
+        <button type="button" class="enlace peligro" id="borrarTodo">Borrar todo</button>
+      </div>
+      <p class="mensaje" id="mensajeAjustes" role="status"></p>
+    </section>
   </main>
 
-  <script src="js/app.js"></script>
+  <div class="aviso" id="aviso" role="status" hidden>
+    <span id="avisoTexto"></span>
+    <button type="button" class="enlace" id="avisoDeshacer">Deshacer</button>
+  </div>
+
+  <footer class="pie">
+    <p>Las calorías se estiman con valores MET del Compendium of Physical Activities y las ecuaciones del ACSM; el 1RM, con la fórmula de Epley. Son orientativos.
+      · <a href="https://github.com/eliasgdev/fitness-log" rel="noopener" target="_blank">Código en GitHub</a></p>
+  </footer>
 </body>
 </html>

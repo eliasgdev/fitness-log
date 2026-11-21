@@ -1,0 +1,17 @@
+{
+  "name": "FitnessLog",
+  "short_name": "FitnessLog",
+  "description": "Bitácora de entrenamiento: series, récords, 1RM estimado y progreso. Sin registro.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111113",
+  "theme_color": "#111113",
+  "icons": [
+    { "src": "icons/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icono-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icono.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
