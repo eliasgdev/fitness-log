@@ -69,3 +69,9 @@ Nació como un ejercicio de JavaScript y se rehízo aplicando las prácticas de 
 ## Licencia
 
 MIT. La fuente Inter se distribuye bajo la SIL Open Font License (`fonts/LICENSE-Inter.txt`).
+
+---
+
+<a href="https://avirexis.com/?utm_source=github&utm_medium=readme&utm_campaign=fitness-log"><picture><source media="(prefers-color-scheme: dark)" srcset="https://avirexis.com/avx-logo-nav-white.png"><img src="https://avirexis.com/avx-logo-nav.png" alt="Avirexis" height="22"></picture></a>
+
+Hecho por [Avirexis](https://avirexis.com/?utm_source=github&utm_medium=readme&utm_campaign=fitness-log), software de gestión para negocios hecho en Colombia.
