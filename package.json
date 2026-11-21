@@ -1,0 +1,12 @@
+{
+  "name": "fitness-log",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Bitácora de entrenamiento: series, récords, 1RM estimado, progreso y calorías con MET. Funciona sin conexión.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "python3 -m http.server 8080"
+  },
+  "license": "MIT"
+}
